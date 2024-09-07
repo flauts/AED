@@ -1,4 +1,3 @@
-#include <iostream>
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 using std::cout, std::endl;
