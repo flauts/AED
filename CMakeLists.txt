@@ -2,5 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 project(AED_github)
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Aed main.cpp linked_list.h
-        main.cpp)
+add_executable(Aed main.cpp linked_list/linked_list.cpp
+        main.cpp
+#        "../../AppData/Local/Temp/leetcode/editor/en/[23]Merge k Sorted Lists.cpp"
+#        stack/stack.cpp
+        queue/queue.cpp
+        #        deque/circular_deque.cpp
+#        stack/min_stack.cpp
+)

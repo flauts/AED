@@ -55,6 +55,18 @@ build CMakeFiles/Aed.dir/main.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Use
   OBJECT_DIR = CMakeFiles\Aed.dir
   OBJECT_FILE_DIR = CMakeFiles\Aed.dir
 
+build CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/linked_list/linked_list.cpp || cmake_object_order_depends_target_Aed
+  DEP_FILE = CMakeFiles\Aed.dir\linked_list\linked_list.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Aed.dir
+  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\linked_list
+
+build CMakeFiles/Aed.dir/queue/queue.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/queue/queue.cpp || cmake_object_order_depends_target_Aed
+  DEP_FILE = CMakeFiles\Aed.dir\queue\queue.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Aed.dir
+  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\queue
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Aed
@@ -63,7 +75,7 @@ build CMakeFiles/Aed.dir/main.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Use
 #############################################
 # Link the executable Aed.exe
 
-build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/main.cpp.obj
+build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/main.cpp.obj CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj CMakeFiles/Aed.dir/queue/queue.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Aed.dir

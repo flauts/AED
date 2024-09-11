@@ -1,5 +1,4 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#include <iostream>
 using std::cout, std::endl;
 
 template <typename T>
@@ -145,4 +144,4 @@ public:
 };
 
 
-#endif //DOUBLY_LINKED_LIST_H
+
