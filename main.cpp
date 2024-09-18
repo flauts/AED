@@ -18,12 +18,32 @@ vector<int> twoSum(std::vector<int>& nums, int target) {
     return {};
 }
 
+int lengthOfLongestSubstring(string s) {
+    HashTable<char, int> ht;
+    int val = 0;
+    int start_index = 0;
+    int end_index = 0;
+    for (int i = 0; i < s.length(); i++) {
+        char c = s[i];
+        if (ht.search(c) != nullptr){
+            cout << i << " " << c << " " <<*ht.search(c)<<endl;
+            if(*ht.search(c) >= start_index) {
+                start_index = *ht.search(c) +1;
+                ht.remove(c);
+            }
+            else{
+                *ht.search(c) = i;
+            }
+        }
+        ht.insert(c, i);
+        end_index = i;
+        val = val < end_index - start_index +1 ? end_index - start_index +1 : val;
+    }
+    return val;
+}
+
 int main() {
-    // HashTable<int, std::string> chainingTable;
-    // testHashTable("Hash Table with Chaining", chainingTable);
-
-    vector<int> a = {3,2,4};
-    twoSum(a,6);
-
+    string s = "suqqjkuuxfeinpgjucmoc";
+    cout << lengthOfLongestSubstring(s);
     return 0;
 }
