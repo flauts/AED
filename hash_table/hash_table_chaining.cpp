@@ -29,8 +29,6 @@ class HashTable {
             while (current) {
                 Node<K, V>* nextNode = current->next;
                 int newIdx = std::hash<K>{}(current->key) % newCapacity;
-
-                // Insert into new table (chaining)
                 current->next = newTable[newIdx];
                 newTable[newIdx] = current;
 
