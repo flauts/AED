@@ -11,6 +11,11 @@ class Queue {
     Node<T>* rear;
 public:
     Queue():front(nullptr),rear(nullptr){}
+    ~Queue() {
+        while (!isempty()) {
+            dequeue();
+        }
+    }
     bool isempty() {
         return front==nullptr;
     }
@@ -18,10 +23,11 @@ public:
         auto new_node = new Node(val);
         if(isempty()){
             front = rear = new_node;
-            return;
         }
-        rear->next = new_node;
-        rear= new_node;
+        else {
+            rear->next = new_node;
+            rear= new_node;
+        }
     }
     T dequeue() {
         auto front_val = front->data;

@@ -6,7 +6,10 @@ add_executable(Aed main.cpp linked_list/linked_list.cpp
         main.cpp
 #        "../../AppData/Local/Temp/leetcode/editor/en/[23]Merge k Sorted Lists.cpp"
 #        stack/stack.cpp
-        queue/queue.cpp
+#        queue/queue.cpp
+        hash_table/hash_table_chaining.cpp
+        hash_table/hash_table_open_adressing.cpp
+        #        hash_table/hash_table_open_adressing.cpp
         #        deque/circular_deque.cpp
 #        stack/min_stack.cpp
 )
