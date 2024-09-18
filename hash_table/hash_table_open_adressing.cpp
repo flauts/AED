@@ -95,19 +95,19 @@ public:
         }
     }
 
-    V& search(const K& key) {
+    V* search(const K& key) {
     int index = hash(key);
     for (int i = 0; i < size; ++i) {
         int newIdx = probe(index, i);
         if (isOccupied[newIdx] && table[newIdx]->first == key) {
-            return table[newIdx]->second;
+            return &table[newIdx]->second;
         }
         if (!isOccupied[newIdx]) {
-            throw std::runtime_error("Key not found");
+            return nullptr;
         }
     }
-    throw std::runtime_error("Key not found");
-}
+    return nullptr;
+    }
 
 
     void remove(const K& key) {
