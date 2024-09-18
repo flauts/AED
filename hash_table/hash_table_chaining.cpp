@@ -71,15 +71,16 @@ public:
         count++;
     }
 
-    V& search(const K& key) {
+    V* search(const K& key) {
         int idx = hash(key);
         Node<K, V>* current = table[idx];
-        while (current) {
+        while (current!=nullptr) {
             if (current->key == key) {
-                return current->value;
+                return &current->value;
             }
             current = current->next;
         }
+        return nullptr;
     }
 
     void remove(const K& key) {
