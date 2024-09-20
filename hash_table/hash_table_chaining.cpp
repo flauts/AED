@@ -115,7 +115,7 @@ public:
     }
 
     bool empty() {
-        return size == 0;
+        return count == 0;
     }
 
 };
