@@ -58,9 +58,9 @@ class BSTree {
 
     void inorder(NodeBT* node) const {
         if (node != nullptr) {
-            print_inorder(node->left);
+            inorder(node->left);
             std::cout << node->data << " ";
-            print_inorder(node->right);
+            inorder(node->right);
         }
     }
 
