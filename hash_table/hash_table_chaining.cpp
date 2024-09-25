@@ -113,9 +113,7 @@ public:
             count--;
         }
     }
-
     bool empty() {
         return count == 0;
     }
-
 };
