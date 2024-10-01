@@ -10,6 +10,7 @@ add_executable(Aed main.cpp linked_list/linked_list.cpp
 #        hash_table/hash_table_chaining.cpp
 #        hash_table/hash_table_open_adressing.cpp
         tree/BST.cpp
+        tree/AVL.cpp
         #        hash_table/hash_table_open_adressing.cpp
         #        deque/circular_deque.cpp
 #        stack/min_stack.cpp
