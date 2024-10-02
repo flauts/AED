@@ -61,17 +61,23 @@ build CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj: CXX_COMPILER__Aed_unsc
   OBJECT_DIR = CMakeFiles\Aed.dir
   OBJECT_FILE_DIR = CMakeFiles\Aed.dir\linked_list
 
-build CMakeFiles/Aed.dir/tree/BST.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/tree/BST.cpp || cmake_object_order_depends_target_Aed
-  DEP_FILE = CMakeFiles\Aed.dir\tree\BST.cpp.obj.d
-  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Aed.dir
-  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\tree
-
 build CMakeFiles/Aed.dir/tree/AVL.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/tree/AVL.cpp || cmake_object_order_depends_target_Aed
   DEP_FILE = CMakeFiles\Aed.dir\tree\AVL.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\Aed.dir
   OBJECT_FILE_DIR = CMakeFiles\Aed.dir\tree
+
+build CMakeFiles/Aed.dir/stack/stack.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/stack/stack.cpp || cmake_object_order_depends_target_Aed
+  DEP_FILE = CMakeFiles\Aed.dir\stack\stack.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Aed.dir
+  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\stack
+
+build CMakeFiles/Aed.dir/queue/queue.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/queue/queue.cpp || cmake_object_order_depends_target_Aed
+  DEP_FILE = CMakeFiles\Aed.dir\queue\queue.cpp.obj.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Aed.dir
+  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\queue
 
 
 # =============================================================================
@@ -81,7 +87,7 @@ build CMakeFiles/Aed.dir/tree/AVL.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:
 #############################################
 # Link the executable Aed.exe
 
-build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/main.cpp.obj CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj CMakeFiles/Aed.dir/tree/BST.cpp.obj CMakeFiles/Aed.dir/tree/AVL.cpp.obj
+build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/main.cpp.obj CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj CMakeFiles/Aed.dir/tree/AVL.cpp.obj CMakeFiles/Aed.dir/stack/stack.cpp.obj CMakeFiles/Aed.dir/queue/queue.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Aed.dir
