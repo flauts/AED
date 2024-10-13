@@ -7,15 +7,8 @@ struct TreeNode {
 };
 
 class MaxHeap {
-private:
     TreeNode* root;
     int size;
-
-    void heapifyUp(TreeNode* node, TreeNode* parent) {
-        if (!parent || node->val <= parent->val) return;
-        std::swap(node->val, parent->val);
-        heapifyUp(parent, getParent(parent));
-    }
 
     void heapifyDown(TreeNode* node) {
         if (!node) return;
@@ -28,20 +21,6 @@ private:
             std::swap(node->val, largest->val);
             heapifyDown(largest);
         }
-    }
-
-    TreeNode* getParent(TreeNode* node) {
-        Queue<TreeNode*> q;
-        if (!root) return nullptr;
-        q.enqueue(root);
-        while (!q.isempty()) {
-            TreeNode* current = q.get_front();
-            q.dequeue();
-            if (current->left == node || current->right == node) return current;
-            if (current->left) q.enqueue(current->left);
-            if (current->right) q.enqueue(current->right);
-        }
-        return nullptr;
     }
 
     TreeNode* getLastNode() {
@@ -83,7 +62,29 @@ public:
             }
         }
         size++;
-        heapifyUp(newNode, getParent(newNode));
+
+        TreeNode* current = newNode;
+        while (current != root) {
+            TreeNode* parent = nullptr;
+            Queue<TreeNode*> q;
+            q.enqueue(root);
+            while (!q.isempty()) {
+                TreeNode* node = q.get_front();
+                q.dequeue();
+                if (node->left == current || node->right == current) {
+                    parent = node;
+                    break;
+                }
+                if (node->left) q.enqueue(node->left);
+                if (node->right) q.enqueue(node->right);
+            }
+            if (parent && parent->val < current->val) {
+                std::swap(parent->val, current->val);
+                current = parent;
+            } else {
+                break;
+            }
+        }
     }
 
     int extractMax() {
@@ -91,9 +92,25 @@ public:
         int maxVal = root->val;
         TreeNode* last = getLastNode();
         root->val = last->val;
-        TreeNode* parent = getParent(last);
-        if (parent && parent->left == last) parent->left = nullptr;
-        else if (parent) parent->right = nullptr;
+        TreeNode* parent = nullptr;
+        Queue<TreeNode*> q;
+        q.enqueue(root);
+        while (!q.isempty()) {
+            TreeNode* node = q.get_front();
+            q.dequeue();
+            if (node->left == last) {
+                parent = node;
+                parent->left = nullptr;
+                break;
+            }
+            if (node->right == last) {
+                parent = node;
+                parent->right = nullptr;
+                break;
+            }
+            if (node->left) q.enqueue(node->left);
+            if (node->right) q.enqueue(node->right);
+        }
         delete last;
         size--;
         if (size == 0) root = nullptr;
