@@ -1,31 +1,48 @@
 #include <iostream>
-#include <cassert>
-#include "tree/AVL.cpp"
+#include <stack>
+using namespace std;
+
+auto fun(const string& str) {
+    stack<int> numbers;
+    stack<char> operators;
+    string current_number = "";
+    for(int i = 0; i < str.length();i++) {
+        if(str[i] != '+' && str[i] != '*' && str[i] != '/' && str[i] != '-') {
+            current_number+=str[i];
+            if(i == str.length()-1) numbers.push(stoi(current_number));
+        }else {
+            numbers.push(stoi(current_number));
+            current_number="";
+            operators.push(str[i]);
+        }
+    }
+    while(!operators.empty()) {
+        int b = numbers.top();
+        numbers.pop();
+        int result = numbers.top();
+        numbers.pop();
+        char op = operators.top();
+        operators.pop();
+        if(!operators.empty()){
+            if( (operators.top() == '/' || operators.top() == '*') && (op != '/' || op != '*')) {
+                char op_priority = operators.top();
+                operators.pop();
+                int a = result;
+                int c = numbers.top();
+                numbers.pop();
+                if(op_priority == '/') result = c / a;
+                else result = c*a;
+            }
+        }
+        if(op == '-') result = result - b;
+        else if (op == '+') result = result + b;
+        else if (op == '*') result = result*b;
+        else if(op == '/') result = result/b;
+        numbers.push(result);
+    }
+    return numbers.top();
+}
 int main() {
-    AVLTree tree;
-
-    // Insert nodes into the AVL tree
-    tree.insert(30);
-    tree.insert(20);
-    tree.insert(40);
-    tree.insert(10);
-    tree.insert(25);
-    tree.insert(35);
-    tree.insert(50);
-
-    // Check heights
-    assert(tree.getHeight() == 2); // The height of the root should be 2
-
-    // Check heights of specific nodes
-    std::cout << "Root Height: " << tree.height(tree.root) << std::endl; // Should print 2
-    std::cout << "Node 20 Height: " << tree.height(tree.root->left) << std::endl; // Should print 1
-    std::cout << "Node 40 Height: " << tree.height(tree.root->right) << std::endl; // Should print 1
-    std::cout << "Node 10 Height: " << tree.height(tree.root->left->left) << std::endl; // Should print 0
-    std::cout << "Node 25 Height: " << tree.height(tree.root->left->right) << std::endl; // Should print 0
-    std::cout << "Node 35 Height: " << tree.height(tree.root->right->left) << std::endl; // Should print 0
-    std::cout << "Node 50 Height: " << tree.height(tree.root->right->right) << std::endl; // Should print 0
-
-    std::cout << "All tests passed successfully!" << std::endl;
-
+    cout << fun("4/2+3*2+1/5");
     return 0;
 }
