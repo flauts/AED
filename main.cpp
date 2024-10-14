@@ -1,5 +1,6 @@
 // #include "parcial/Graph.cpp"
 #include <iostream>
+#include "parcial/AVL.cpp"
 #include <vector>
 using namespace std;
 // int main() {
@@ -13,52 +14,51 @@ using namespace std;
 //     cout<<graph.shortestPath(2,5);
 //
 // }
-
-struct Node {
-    int val;
-    Node* next;
-    Node(int val):val(val),next(nullptr){}
-};
-
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int val):val(val),left(nullptr),right(nullptr){}
-};
-
-TreeNode* binaryInsert(vector<int>arr) {
-    if(arr.empty()) return nullptr;
-    int mid = arr.size()/2;
-    auto node = new TreeNode(arr[mid]);
-    if(arr.size() == 1) return node;
-    vector arr_left(arr.begin(),arr.begin()+mid);
-    node->left = binaryInsert(arr_left);
-    vector arr_right(arr.begin()+mid+1,arr.end());
-    node->right = binaryInsert(arr_right);
-    return node;
-}
-
-TreeNode* toBSL(Node* head) {
-    auto current = head;
-    vector<int> arr;
-    while(current!=nullptr) {
-        arr.push_back(current->val);
-        current = current->next;
-    }
-    return binaryInsert(arr);
-}
+//
+// struct Node {
+//     int val;
+//     Node* next;
+//     Node(int val):val(val),next(nullptr){}
+// };
+//
+// struct TreeNode {
+//     int val;
+//     TreeNode* left;
+//     TreeNode* right;
+//     TreeNode(int val):val(val),left(nullptr),right(nullptr){}
+// };
+//
+// TreeNode* binaryInsert(vector<int>arr) {
+//     if(arr.empty()) return nullptr;
+//     int mid = arr.size()/2;
+//     auto node = new TreeNode(arr[mid]);
+//     if(arr.size() == 1) return node;
+//     vector arr_left(arr.begin(),arr.begin()+mid);
+//     node->left = binaryInsert(arr_left);
+//     vector arr_right(arr.begin()+mid+1,arr.end());
+//     node->right = binaryInsert(arr_right);
+//     return node;
+// }
+//
+// TreeNode* toBSL(Node* head) {
+//     auto current = head;
+//     vector<int> arr;
+//     while(current!=nullptr) {
+//         arr.push_back(current->val);
+//         current = current->next;
+//     }
+//     return binaryInsert(arr);
+// }
 
 
 int main() {
-    auto head = new Node(-10);
-    auto current = head;
-    for(int i = -9; i < 3;i++) {
-        auto n = new Node(i);
-        current->next = n;
-        current = n;
-    }
-
-    TreeNode* balanced = toBSL(head);
-    cout<<balanced->val;
+   AVL tree;
+   tree.insert(3);
+   tree.insert(1);
+   tree.insert(2);
+   tree.insert(5);
+   tree.insert(15);
+   tree.insert(20);
+   tree.print();
 }
+

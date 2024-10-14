@@ -10,7 +10,8 @@ add_executable(Aed main.cpp linked_list/linked_list.cpp
 #        queue/queue.cpp
 #        heap/minheap.cpp
 #        heap/maxheap.cpp
-        parcial/Graph.cpp
+#        parcial/Graph.cpp
+        parcial/AVL.cpp
         #        hash_table/hash_table_chaining.cpp
 #        hash_table/hash_table_open_adressing.cpp
 #        tree/BST.cpp
