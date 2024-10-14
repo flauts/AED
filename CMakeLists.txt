@@ -4,12 +4,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Aed main.cpp linked_list/linked_list.cpp
         main.cpp
-        tree/AVL.cpp
+#        tree/AVL.cpp
         #        "../../AppData/Local/Temp/leetcode/editor/en/[23]Merge k Sorted Lists.cpp"
-        stack/stack.cpp
-        queue/queue.cpp
-        heap/minheap.cpp
-        heap/maxheap.cpp
+#        stack/stack.cpp
+#        queue/queue.cpp
+#        heap/minheap.cpp
+#        heap/maxheap.cpp
+        parcial/Graph.cpp
         #        hash_table/hash_table_chaining.cpp
 #        hash_table/hash_table_open_adressing.cpp
 #        tree/BST.cpp

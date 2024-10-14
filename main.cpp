@@ -1,48 +1,64 @@
+// #include "parcial/Graph.cpp"
 #include <iostream>
-#include <stack>
+#include <vector>
 using namespace std;
+// int main() {
+//     int edges[10][3] = {{1,2,1},{2,3,2},{3,4,1},{4,5,1},
+//     {5,6,4},{6,7,2},{7,8,1},{8,9,2},{1,9,1},{0,8,1}};
+//     Graph graph(10,edges);
+//     int edge[3] = {2,9,2};
+//     graph.addEdge(edge);
+//     int edge1[3] = {1,5,1};
+//     graph.addEdge(edge1);
+//     cout<<graph.shortestPath(2,5);
+//
+// }
 
-auto fun(const string& str) {
-    stack<int> numbers;
-    stack<char> operators;
-    string current_number = "";
-    for(int i = 0; i < str.length();i++) {
-        if(str[i] != '+' && str[i] != '*' && str[i] != '/' && str[i] != '-') {
-            current_number+=str[i];
-            if(i == str.length()-1) numbers.push(stoi(current_number));
-        }else {
-            numbers.push(stoi(current_number));
-            current_number="";
-            operators.push(str[i]);
-        }
-    }
-    while(!operators.empty()) {
-        int b = numbers.top();
-        numbers.pop();
-        int result = numbers.top();
-        numbers.pop();
-        char op = operators.top();
-        operators.pop();
-        if(!operators.empty()){
-            if( (operators.top() == '/' || operators.top() == '*') && (op != '/' || op != '*')) {
-                char op_priority = operators.top();
-                operators.pop();
-                int a = result;
-                int c = numbers.top();
-                numbers.pop();
-                if(op_priority == '/') result = c / a;
-                else result = c*a;
-            }
-        }
-        if(op == '-') result = result - b;
-        else if (op == '+') result = result + b;
-        else if (op == '*') result = result*b;
-        else if(op == '/') result = result/b;
-        numbers.push(result);
-    }
-    return numbers.top();
+struct Node {
+    int val;
+    Node* next;
+    Node(int val):val(val),next(nullptr){}
+};
+
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int val):val(val),left(nullptr),right(nullptr){}
+};
+
+TreeNode* binaryInsert(vector<int>arr) {
+    if(arr.empty()) return nullptr;
+    int mid = arr.size()/2;
+    auto node = new TreeNode(arr[mid]);
+    if(arr.size() == 1) return node;
+    vector arr_left(arr.begin(),arr.begin()+mid);
+    node->left = binaryInsert(arr_left);
+    vector arr_right(arr.begin()+mid+1,arr.end());
+    node->right = binaryInsert(arr_right);
+    return node;
 }
+
+TreeNode* toBSL(Node* head) {
+    auto current = head;
+    vector<int> arr;
+    while(current!=nullptr) {
+        arr.push_back(current->val);
+        current = current->next;
+    }
+    return binaryInsert(arr);
+}
+
+
 int main() {
-    cout << fun("4/2+3*2+1/5");
-    return 0;
+    auto head = new Node(-10);
+    auto current = head;
+    for(int i = -9; i < 3;i++) {
+        auto n = new Node(i);
+        current->next = n;
+        current = n;
+    }
+
+    TreeNode* balanced = toBSL(head);
+    cout<<balanced->val;
 }

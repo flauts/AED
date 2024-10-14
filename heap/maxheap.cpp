@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../queue/Queue.cpp"
+
 struct TreeNode {
     int val;
     TreeNode *left, *right;
@@ -39,6 +40,11 @@ class MaxHeap {
 
 public:
     MaxHeap() : root(nullptr), size(0) {}
+
+    void update(int new_val) {
+        root->val = new_val;
+        heapifyDown(root);
+    }
 
     void insert(int value) {
         TreeNode* newNode = new TreeNode(value);
@@ -87,8 +93,8 @@ public:
         }
     }
 
-    int extractMax() {
-        if (!root) throw std::out_of_range("Heap is empty");
+    int pop() {
+        if (!root) return -1;
         int maxVal = root->val;
         TreeNode* last = getLastNode();
         root->val = last->val;

@@ -88,8 +88,8 @@ public:
         }
     }
 
-    int extractMin() {
-        if (!root) throw std::out_of_range("Heap is empty");
+    int pop() {
+        if (!root) return INT_MAX;
         int minVal = root->val;
         TreeNode* last = getLastNode();
         root->val = last->val;
