@@ -1,139 +1,60 @@
-#include <iostream>
-#include "../queue/Queue.cpp"
-
-struct TreeNode {
-    int val;
-    TreeNode *left, *right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
+#include <vector>
+using namespace std;
 
 class MaxHeap {
-    TreeNode* root;
-    int size;
+public:
+    int _size = 0;
+    vector<int> v = {-1}; //elements start at index 1\\\
 
-    void heapifyDown(TreeNode* node) {
-        if (!node) return;
-        TreeNode* largest = node;
-        if (node->left && node->left->val > largest->val)
-            largest = node->left;
-        if (node->right && node->right->val > largest->val)
-            largest = node->right;
-        if (largest != node) {
-            std::swap(node->val, largest->val);
-            heapifyDown(largest);
-        }
-    }
-
-    TreeNode* getLastNode() {
-        if (!root) return nullptr;
-        Queue<TreeNode*> q;
-        q.enqueue(root);
-        TreeNode* last = nullptr;
-        while (!q.isempty()) {
-            last = q.get_front();
-            q.dequeue();
-            if (last->left) q.enqueue(last->left);
-            if (last->right) q.enqueue(last->right);
-        }
-        return last;
-    }
+    int p(int i){return i >> 1;}// i / 2
+    int r(int i){return i << 1;} // i * 2
+    int l(int i){return (i << 1) + 1;}  //i * 2 + 1
 
 public:
-    MaxHeap() : root(nullptr), size(0) {}
-
-    void update(int new_val) {
-        root->val = new_val;
-        heapifyDown(root);
+    bool empty() const {
+        return _size == 0;
     }
-
-    void insert(int value) {
-        TreeNode* newNode = new TreeNode(value);
-        if (!root) {
-            root = newNode;
-        } else {
-            Queue<TreeNode*> q;
-            q.enqueue(root);
-            while (!q.isempty()) {
-                TreeNode* current = q.get_front();
-                q.dequeue();
-                if (!current->left) {
-                    current->left = newNode;
-                    break;
-                } else if (!current->right) {
-                    current->right = newNode;
-                    break;
-                }
-                q.enqueue(current->left);
-                q.enqueue(current->right);
-            }
-        }
-        size++;
-
-        TreeNode* current = newNode;
-        while (current != root) {
-            TreeNode* parent = nullptr;
-            Queue<TreeNode*> q;
-            q.enqueue(root);
-            while (!q.isempty()) {
-                TreeNode* node = q.get_front();
-                q.dequeue();
-                if (node->left == current || node->right == current) {
-                    parent = node;
-                    break;
-                }
-                if (node->left) q.enqueue(node->left);
-                if (node->right) q.enqueue(node->right);
-            }
-            if (parent && parent->val < current->val) {
-                std::swap(parent->val, current->val);
-                current = parent;
-            } else {
-                break;
-            }
-        }
-    }
-
-    int pop() {
-        if (!root) return -1;
-        int maxVal = root->val;
-        TreeNode* last = getLastNode();
-        root->val = last->val;
-        TreeNode* parent = nullptr;
-        Queue<TreeNode*> q;
-        q.enqueue(root);
-        while (!q.isempty()) {
-            TreeNode* node = q.get_front();
-            q.dequeue();
-            if (node->left == last) {
-                parent = node;
-                parent->left = nullptr;
-                break;
-            }
-            if (node->right == last) {
-                parent = node;
-                parent->right = nullptr;
-                break;
-            }
-            if (node->left) q.enqueue(node->left);
-            if (node->right) q.enqueue(node->right);
-        }
-        delete last;
-        size--;
-        if (size == 0) root = nullptr;
-        else heapifyDown(root);
-        return maxVal;
-    }
-
     int getMax() {
-        if (!root) return -1;
-        return root->val;
+        return v[1];
     }
 
-    bool isEmpty() {
-        return size == 0;
+    void shiftUp(int i) {
+        if(i > _size) return; //shifting item that doesnt exist
+        if(i == 1) return;
+        if(v[i] > v[p(i)]) swap(v[p(i)],v[i]); // if parent samller than child, swap
+        shiftUp(p(i));
     }
 
-    int getSize() {
-        return size;
+    int popMax() {
+        int max = v[1];
+        swap(v[1],v[_size--]); //swap with last and decrease size
+        shiftDown(1); //let shift down reorganize
+        return max;//return max
     }
+
+    void shiftDown(int i) {
+        if(i > _size) return; //shifting i that doesnt exist
+        int swapId = i;
+        if(l(i) <= _size && v[i] < v[l(i)]) swapId = l(i);
+        //if left child exists and greater than parent then swap left
+        if(r(i) <= _size && v[swapId] < v[r(i)]) swapId = r(i);
+        //if right exists and its greater than current greater then swap right
+        if(swapId != i) {
+            swap(v[i],v[swapId]); //swap values of child and parent, after this parent will be greater than both
+            shiftDown(swapId);
+        }
+        return;
+    }
+
+    void insert(int val) {
+        if(_size+1 >= v.size()) {
+            v.push_back(0);
+        }
+        v[++_size] = val;
+        shiftUp(_size);
+        return;
+    }
+
+    MaxHeap(){}
+
 };

@@ -1,7 +1,5 @@
-// #include "parcial/Graph.cpp"
 #include <iostream>
-#include "parcial/AVL.cpp"
-#include <vector>
+#include "parcial/practiceheap.cpp"
 using namespace std;
 // int main() {
 //     int edges[10][3] = {{1,2,1},{2,3,2},{3,4,1},{4,5,1},
@@ -52,13 +50,24 @@ using namespace std;
 
 
 int main() {
-   AVL tree;
-   tree.insert(3);
-   tree.insert(1);
-   tree.insert(2);
-   tree.insert(5);
-   tree.insert(15);
-   tree.insert(20);
-   tree.print();
+    MaxHeap heap;
+    heap.insert(15);
+    heap.insert(-8);
+    heap.insert(27);
+    heap.insert(11);
+    heap.insert(9);
+    for (auto e: heap.v) {
+        cout << e<<" ";
+    }
+    cout<<endl;
+    heap.pop();
+    for (auto e: heap.v) {
+        cout << e<<" ";
+    }
+    cout<<endl;
+    heap.pop();
+    for (auto e: heap.v) {
+        cout << e<<" ";
+    }
 }
 
