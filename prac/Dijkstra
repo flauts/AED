@@ -1,0 +1,149 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+// Clase Heap proporcionada
+class Heap {
+private:
+    pair<int, int>* heap; // Cambiado a pair<int, int> para manejar (distancia, vértice)
+    int heapSize;
+    int capacity;
+    bool isMinHeap;
+
+    void heapifyDown(int index) {
+        int leftChild = 2 * index + 1;
+        int rightChild = 2 * index + 2;
+        int extremeIndex = index;
+
+        if (isMinHeap) {
+            if (leftChild < heapSize && heap[leftChild].first < heap[extremeIndex].first) {
+                extremeIndex = leftChild;
+            }
+            if (rightChild < heapSize && heap[rightChild].first < heap[extremeIndex].first) {
+                extremeIndex = rightChild;
+            }
+        }
+
+        if (extremeIndex != index) {
+            swap(heap[index], heap[extremeIndex]);
+            heapifyDown(extremeIndex);
+        }
+    }
+
+    void heapifyUp(int index) {
+        int parentIndex = (index - 1) / 2;
+        if (parentIndex >= 0) {
+            if (isMinHeap && heap[index].first < heap[parentIndex].first) {
+                swap(heap[index], heap[parentIndex]);
+                heapifyUp(parentIndex);
+            }
+        }
+    }
+
+public:
+    Heap(int cap, bool minHeap = true) : heapSize(0), capacity(cap), isMinHeap(minHeap) {
+        heap = new pair<int, int>[capacity];
+    }
+
+    ~Heap() {
+        delete[] heap;
+    }
+
+    void insert(pair<int, int> value) {
+        if (heapSize >= capacity) {
+            throw runtime_error("Heap is full");
+        }
+        heap[heapSize] = value;
+        heapifyUp(heapSize);
+        heapSize++;
+    }
+
+    pair<int, int> extractRoot() {
+        if (heapSize == 0) {
+            return {INT_MAX, -1};
+        }
+        pair<int, int> rootValue = heap[0];
+        heap[0] = heap[heapSize - 1];
+        heapSize--;
+        heapifyDown(0);
+        return rootValue;
+    }
+
+    bool isEmpty() {
+        return heapSize == 0;
+    }
+};
+
+// Clase Grafo
+template <typename edgeValueType>
+class Grafo {
+private:
+    struct Pair {
+        int key;
+        edgeValueType value;
+
+        Pair(const int& key, const edgeValueType& value) : key(key), value(value) {}
+    };
+
+    int numVertices;
+    vector<vector<Pair>> listaAdyacencia;
+
+public:
+    Grafo(int vertices) {
+        numVertices = vertices;
+        listaAdyacencia.resize(numVertices);
+    }
+
+    void agregarArista(int origen, int destino, edgeValueType value) {
+        listaAdyacencia[origen].push_back(Pair(destino, value));
+    }
+
+    void dijkstra(int origen) {
+        vector<int> dist(numVertices, INT_MAX);
+        vector<int> pred(numVertices, -1); // Para rastrear los predecesores
+        dist[origen] = 0;
+
+        Heap minHeap(numVertices, true);
+        minHeap.insert({0, origen}); // Insertar nodo inicial con distancia 0
+
+        while (!minHeap.isEmpty()) {
+            auto [distancia, u] = minHeap.extractRoot();
+
+            for (auto vecino : listaAdyacencia[u]) {
+                int v = vecino.key;
+                int peso = vecino.value;
+
+                if (dist[u] + peso < dist[v]) {
+                    dist[v] = dist[u] + peso;
+                    pred[v] = u;
+                    minHeap.insert({dist[v], v});
+                }
+            }
+        }
+
+        // Imprimir resultados
+        cout << "Distancias desde el nodo " << origen << ":\n";
+        for (int i = 0; i < numVertices; i++) {
+            cout << "Nodo " << i << ": " << dist[i] << "\n";
+        }
+    }
+};
+
+int main() {
+    int vertices = 6;
+    Grafo<int> grafo(vertices);
+
+    grafo.agregarArista(0, 1, 4);
+    grafo.agregarArista(0, 2, 1);
+    grafo.agregarArista(2, 1, 2);
+    grafo.agregarArista(1, 3, 1);
+    grafo.agregarArista(2, 3, 5);
+    grafo.agregarArista(3, 4, 3);
+    grafo.agregarArista(4, 5, 2);
+
+    grafo.dijkstra(0);
+
+    return 0;
+}

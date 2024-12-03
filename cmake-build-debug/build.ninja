@@ -49,18 +49,6 @@ cmake_ninja_workdir = C$:/Users/flauta/CLionProjects/AED_github/cmake-build-debu
 
 build cmake_object_order_depends_target_Aed: phony || CMakeFiles/Aed.dir
 
-build CMakeFiles/Aed.dir/main.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/main.cpp || cmake_object_order_depends_target_Aed
-  DEP_FILE = CMakeFiles\Aed.dir\main.cpp.obj.d
-  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Aed.dir
-  OBJECT_FILE_DIR = CMakeFiles\Aed.dir
-
-build CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/linked_list/linked_list.cpp || cmake_object_order_depends_target_Aed
-  DEP_FILE = CMakeFiles\Aed.dir\linked_list\linked_list.cpp.obj.d
-  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\Aed.dir
-  OBJECT_FILE_DIR = CMakeFiles\Aed.dir\linked_list
-
 build CMakeFiles/Aed.dir/tree/Bplus.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C$:/Users/flauta/CLionProjects/AED_github/tree/Bplus.cpp || cmake_object_order_depends_target_Aed
   DEP_FILE = CMakeFiles\Aed.dir\tree\Bplus.cpp.obj.d
   FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
@@ -75,7 +63,7 @@ build CMakeFiles/Aed.dir/tree/Bplus.cpp.obj: CXX_COMPILER__Aed_unscanned_Debug C
 #############################################
 # Link the executable Aed.exe
 
-build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/main.cpp.obj CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj CMakeFiles/Aed.dir/tree/Bplus.cpp.obj
+build Aed.exe: CXX_EXECUTABLE_LINKER__Aed_Debug CMakeFiles/Aed.dir/tree/Bplus.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Aed.dir

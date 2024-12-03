@@ -165,7 +165,7 @@ int main() {
 
     // Prueba de eliminación
     arbol.eliminar(15);
-    cout << "Después de eliminar 15, buscando 15: " <<
+    cout << "Despues de eliminar 15, buscando 15: " <<
         (arbol.buscar(15) ? "Encontrado" : "No encontrado") << endl;
 
     return 0;

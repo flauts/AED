@@ -1,7 +1,7 @@
 # ninja log v6
-28	636	7520494159721732	build.ninja	9bd05fe035134099
+32	567	7520495632424449	build.ninja	9bd05fe035134099
 42	598	7506721179106541	CMakeFiles/Aed.dir/linked_list/linked_list.cpp.obj	efb577a900f9bf1e
-3059	3334	7507057695617352	Aed.exe	8ab32ff1c06e913e
+1174	1341	7520495378713427	Aed.exe	fb2cf0134ee21760
 92	3059	7507057665944490	CMakeFiles/Aed.dir/main.cpp.obj	f9a2a0bc09e974e3
 43	356	7507046981272300	CMakeFiles/Aed.dir/heap/minheap.cpp.obj	bd765929a939d22e
 31	268	7507052032109606	CMakeFiles/Aed.dir/heap/maxheap.cpp.obj	19962014ef0cd6
@@ -9,5 +9,4 @@
 26	231	7507050660760185	CMakeFiles/Aed.dir/heap/practiceheap.cpp.obj	c91a78b60a913518
 89	1233	7517539367520002	CMakeFiles/Aed.dir/parcial/AVL.cpp.obj	2983fb8480a2b8ae
 104	1462	7517539367669978	CMakeFiles/Aed.dir/trie/trie.cpp.obj	5401ff41aa245de2
-32	567	7520494159721732	build.ninja	9bd05fe035134099
-78	1346	7520494162091719	CMakeFiles/Aed.dir/tree/Bplus.cpp.obj	908464c7f05e7f8
+29	1173	7520495367258239	CMakeFiles/Aed.dir/tree/Bplus.cpp.obj	908464c7f05e7f8
