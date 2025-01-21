@@ -98,7 +98,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "tree/Bplus.cpp",
+			"path" : "Automata/afd.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

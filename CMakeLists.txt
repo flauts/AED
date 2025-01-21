@@ -17,8 +17,10 @@ add_executable(Aed
 #        graph/grafo.cpp
 #        tree/BTree.cpp
 #        tree/Bplus.cpp
-        tree/Bplus.cpp
-#        tree/BTree.cpp
+#        tree/Bplus.cpp
+#        Automata/afd.cpp
+        Automata/afd.cpp
+        #        tree/BTree.cpp
         #        parcial/Graph.cpp
 #        parcial/AVL.cpp
         #        hash_table/hash_table_chaining.cpp
